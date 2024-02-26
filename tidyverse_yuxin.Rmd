@@ -1,0 +1,41 @@
+---
+title: "BIS180L-prereq-waiver for Tidyverse"
+author: "Yuxin Bai"
+date: "2024-02-23"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+# Load package: Tidyverse
+```{r}
+library("tidyverse")
+```
+
+# Import dataset: height_data_clean
+```{r}
+setwd("~/Desktop/Graduate White/Spring2024/BIS180L")
+# Load the dataset
+height_data = read_csv("height_data_clean.csv")
+head(height_data)
+```
+# Tasks
+1. Use tidyverse functions to retain data only from January 27, 2023. \
+We need to look at the column 2 to do the filtering. Look for "2023-01-27"
+
+```{r}
+Jan27_data <- filter(height_data, survey_date == "2023-01-27") #save dataset only containing 1/27 data
+head(Jan27_data)
+unique(Jan27_data$survey_date) #check
+```
+
+2. Summarize the data by computing the average height_cm for each pop
+```{r}
+unique(height_data$pop) #23 different pop
+mean_table<-height_data %>%
+  group_by(pop) %>% #want to compute something for each species
+  summarize(height.mean=mean(height_cm))
+mean_table
+```
+
+
