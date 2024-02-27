@@ -1,0 +1,66 @@
+---
+title: "BIS180L-prereq-waiver for GGplot"
+author: "Yuxin Bai"
+date: "2024-02-23"
+output: html_document
+---
+
+# Load packages
+```{r}
+library("tidyverse")
+library("ggplot2")
+```
+
+# Import dataset: height_data_clean
+```{r}
+setwd("~/Desktop/Graduate White/Spring2024/BIS180L")
+# Load the dataset
+height_data = read_csv("height_data_clean.csv")
+head(height_data)
+```
+
+# Tasks
+1. Plot a trend line of height_cm over time, with a separate line for each population.\
+Need to use the mean height of each pop at each time point
+
+```{r}
+#group by pop and date 
+mean_height <- height_data %>%
+  group_by(pop, survey_date) %>%
+  summarize(mean=mean(height_cm, na.rm=TRUE))
+
+#plot for height over time, and have different color for different pop
+trendlineplot=mean_height %>% ggplot(aes(x=survey_date, y = mean, color=pop,group=pop))+
+  geom_line() +
+  labs(title = "Trend line of Height vs time", 
+       x = "Time",
+       y = "Height(cm)") + 
+  theme(plot.title = element_text(hjust = 0.5))
+  
+trendlineplot
+```
+
+2.Subset to keep only January 27, 2023. From this data make a boxplot that shows the data from each pop (one box per population, all on the same plot). 
+
+```{r}
+Jan27_data <- filter(height_data, survey_date == "2023-01-27") #save dataset only containing 1/27 data
+
+boxplot=Jan27_data %>% ggplot(aes(x=height_cm, y=pop)) +
+  geom_boxplot()+
+  labs(title = "Boxplot of heights from each pop", 
+       x = "Height(cm)",
+       y = "Populations") + 
+  theme(plot.title = element_text(hjust = 0.5))
+boxplot
+```
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,82 @@
+---
+title: "fundamentalR_yuxin"
+author: "Yuxin Bai"
+date: "2024-02-24"
+output: html_document
+---
+
+### Exercise 1: Use sum() to determine the sum of numbers from 2000 to 20000. Provide your code and the actual sum in your answer.
+```{r}
+sum(2000,20000)
+```
+The sum is 22000. 
+
+### Exercise 2: In one or two sentences, describe what the below code snippet did.
+```{r}
+a <- 5
+b <- 2:20
+a
+b
+```
+a<-5 will assign a with the number of 5 \
+b<- 2:20 will create a list of 2 to 20 and assign to object b \
+a will let R show the number associated with object a \
+b will let R show the list associated with object b \
+
+
+### Exercise 3: Add the contents of a and b together and place the results in a new object. Examine the result. Include your code. Try using both sum() and +; do you get different results? If so, why?
+```{r}
+a+b
+sum(a,b)
+```
+I get different results. \
+a+b will add 5 to every numbers in the list b, and then generate a list from 2+5 to 20+5. The sum function will add object a and every number in the object b together to give me a sum. 
+
+### Exercise 4: What is the sum of the 5th through 10th element of object b? Provide your code and the sum.
+
+```{r}
+sum(b[5]:b[10])
+```
+The sum is 51
+
+### Exercise 5: What is the sum of the 3rd, 8th, and 10th element of b?
+```{r}
+sum(b[3], b[8], b[10])
+```
+The sum is 24
+
+
+### Exercise 6: When extracting from a 2-dimensional object, which number specifies rows and which specifies columns? What does m[3,] do? How can you extract the 3rd, 4th and 5th columns of m together as one object?
+```{r}
+m <- matrix(data=1:25,ncol=5,byrow=T)
+m
+m[3,]
+```
+The **first** number specify **row**, and the **second** number specifies **column**. \
+m[3,] will extract the whole row 3 from the matrix. \
+The code below will extract column 3, 4, 5 of m together as one object. 
+
+```{r}
+m[,3:5]
+```
+
+
+### Exercise 7: What does the cbind command do? How about rbind? Create a new object “n” where the first row is a new row of numbers (your choice) and the following rows are the rows from matrix m. Optional: do the same but reverse the order of the rows from matrix m.
+```{r}
+cbind(m,101:105)
+```
+cbind command will combine the objects by column. In the code above, cbind will combine matrix m with 1 list of 101 to 105 by column. \
+rbind will combine the objects by row. 
+```{r}
+n<-rbind(51:55,m)
+n
+
+n2<-rbind(51:55,m[5:1,])
+n2
+```
+
+
+
+
+
+
